@@ -45,15 +45,16 @@ test_Images = []
 test_Labels = []
 imagePaths = list(paths.list_images("images/test"))
 for (i, imagePath) in enumerate(imagePaths):
-    image = cv2.imread(imagePath)
-    label = os.path.basename(os.path.dirname(imagePath))
+	image = cv2.imread(imagePath)
+	label = os.path.basename(os.path.dirname(imagePath))
 
-    pixels = image_to_feature_vector(image)
+	pixels = image_to_feature_vector(image)
 
-    test_Images.append(pixels)
-    test_Labels.append(label)
+	test_Images.append(pixels)
+	test_Labels.append(label)
 
-    print("[INFO] test data processed {}/{}".format(i, len(imagePaths)))
+	if(i % 100 == 0):
+		print("[INFO] test data processed {}/{}".format(i, len(imagePaths)))
 		
 X_test = np.array(test_Images)
 y_test = np.asarray(test_Labels)
